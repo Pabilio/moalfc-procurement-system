@@ -1,0 +1,27 @@
+{
+  "name": "moalfc-procurement-backend",
+  "version": "1.0.0",
+  "description": "e-PTS backend API -- Ministry of Agriculture, Livestock, Fisheries and Cooperatives procurement tracking system",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/seed.js",
+    "postinstall": "npm rebuild better-sqlite3"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.4.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "nodemailer": "^10.1.0",
+    "resend": "^6.6.0"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.11.1": true
+  }
+}
