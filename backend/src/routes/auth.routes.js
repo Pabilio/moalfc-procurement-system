@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const db = require('../config/db');
@@ -10,8 +8,15 @@ const router = express.Router();
 router.get('/debug-users', (req, res) => {
   const users = db.prepare('SELECT id, email, role, full_name FROM users').all();
   res.json({ count: users.length, users });
-
 });
+
+// Temporary endpoint to reset all user passwords to 'password123'
+router.get('/reset-passwords', (req, res) => {
+  const newHash = bcrypt.hashSync('password123', 10);
+  const result = db.prepare('UPDATE users SET password_hash = ?').run(newHash);
+  res.json({ ok: true, message: `Updated password to 'password123' for ${result.changes} users.` });
+});
+
 router.post('/register', (req, res) => {
   const { business_name, full_name, email, phone, password } = req.body;
   if (!business_name || !full_name || !email || !phone || !password || password.length < 6) {
@@ -52,7 +57,6 @@ router.post('/login', (req, res) => {
   delete user.password_hash;
   res.json({ token: generateToken(user), user });
 });
-
 
 router.get('/me', requireAuth, (req, res) => {
   res.json({ user: req.user });
