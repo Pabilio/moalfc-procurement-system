@@ -22,15 +22,22 @@ app.use('/api/audit-log', require('./routes/audit.routes'));
 
 app.get('/api/health', (req, res) => res.json({ ok: true, service: 'e-PTS backend' }));
 
-// Optional: serve the built frontend (frontend/dist) if it exists, so
-// `npm run build` in frontend/ + `npm start` in backend/ is enough to
-// run the whole system from one process/port.
+
 const FRONTEND_DIST = path.join(__dirname, '..', '..', 'frontend', 'dist');
 if (fs.existsSync(FRONTEND_DIST)) {
   app.use(express.static(FRONTEND_DIST));
   app.get(/^(?!\/api).*/, (req, res) => res.sendFile(path.join(FRONTEND_DIST, 'index.html')));
 }
+const cors = require('cors');
 
+app.use(cors({
+  origin: [
+    'https://moalfc-procurement.web.app',
+    'https://moalfc-procurement.firebaseapp.com',
+    'http://localhost:5173'
+  ],
+  credentials: true
+}));
 
 const multer = require('multer');
 app.use((err, req, res, next) => {
