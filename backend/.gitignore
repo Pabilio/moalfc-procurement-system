@@ -5,10 +5,10 @@ data/*.db-journal
 data/*.db-wal
 data/*.db-shm
 uploads/*
-*.sqlite
-*.db
+#*.sqlite
+#*.db
 dist/
 build/
 !uploads/.gitkeep
-*.log
+#*.log
 
