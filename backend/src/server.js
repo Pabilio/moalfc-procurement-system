@@ -30,7 +30,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Explicitly answer browser OPTIONS preflight requests
+
 
 app.use(express.json());
 
