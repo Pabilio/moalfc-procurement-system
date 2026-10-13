@@ -122,7 +122,7 @@ router.post('/:id/messages', requireAuth, (req, res) => {
   db.prepare(`INSERT INTO document_messages (document_id, sender_id, message) VALUES (?, ?, ?)`)
     .run(req.params.id, req.user.id, message.trim());
 
-  // Push it to the supplier immediately -- not just visible next time they open the page.
+  
   const notifications = require('../services/notification.service');
   notifications.notifyDocumentEvent(req.params.id, `you have a new message from ${req.user.full_name}: "${message.trim()}"`);
 

@@ -9,12 +9,12 @@ const DB_PATH = process.env.DB_PATH || path.join(DATA_DIR, 'procurement.db');
 const db = new Database(DB_PATH);
 db.pragma('foreign_keys = ON');
 db.pragma('journal_mode = WAL');
-db.pragma('busy_timeout = 5000'); // Fails fast or waits safely up to 5s instead of hanging indefinitely
+db.pragma('busy_timeout = 5000'); 
 
 const schema = fs.readFileSync(path.join(__dirname, '..', 'schema.sql'), 'utf8');
 db.exec(schema);
 
-// Seed the six workflow stages exactly once
+
 const stageCount = db.prepare('SELECT COUNT(*) AS n FROM workflow_stages').get().n;
 if (stageCount === 0) {
   const insertStage = db.prepare(`

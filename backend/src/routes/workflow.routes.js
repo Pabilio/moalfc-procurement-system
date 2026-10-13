@@ -10,14 +10,14 @@ router.get('/stages', requireAuth, (req, res) => {
   res.json({ stages: workflow.getStages() });
 });
 
-// Staff dashboard: every active document, worst delays first.
+
 router.get('/active', requireAuth, (req, res) => {
   if (!STAFF_ROLES.includes(req.user.role)) return res.status(403).json({ error: 'Staff only.' });
   workflow.checkAndNotifyEscalations();
   res.json({ documents: workflow.getAllActiveWithEscalation() });
 });
 
-// Supplier dashboard: this supplier's own documents (any status).
+
 router.get('/mine', requireAuth, (req, res) => {
   if (req.user.role !== 'supplier') return res.status(403).json({ error: 'Suppliers only.' });
   const docs = db.prepare('SELECT * FROM documents WHERE supplier_id = ? ORDER BY uploaded_at DESC').all(req.user.id);
