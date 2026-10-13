@@ -28,7 +28,7 @@ if (fs.existsSync(FRONTEND_DIST)) {
   app.use(express.static(FRONTEND_DIST));
   app.get(/^(?!\/api).*/, (req, res) => res.sendFile(path.join(FRONTEND_DIST, 'index.html')));
 }
-const cors = require('cors');
+
 
 app.use(cors({
   origin: [
