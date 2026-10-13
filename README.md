@@ -2,7 +2,7 @@
 
 **Design and Implementation of an Automated Web-Based Procurement Tracking System to Reduce Document Mismanagement Risks and Enhance Transparency: A Case Study of the Ministry of Agriculture, Kenya**
 
-Final Year Project by **Pabilio Muobe** | Supervisor: **Mr.Austin Karoki** | Techical University Of Kenya | [Year 4]
+Final Year Project by **Pabilio Muobe** | Supervisor: **Mr.Austin Karoki** | Technical University Of Kenya | Final Year 
 
 Repository: https://github.com/Pabilio/moalfc-procurement-system
 
